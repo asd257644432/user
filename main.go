@@ -8,13 +8,10 @@ import (
 )
 
 func main() {
-	ipAddr, err := net.ResolveIPAddr("tcp", "127.0.0.1:8000")
-	if err != nil {
-		panic("failed to lesson port")
-	}
+	ipAddr, _ := net.ResolveTCPAddr("tcp", ":8000")
 	svr := user.NewServer(new(UserImpl), server.WithServiceAddr(ipAddr))
 
-	err = svr.Run()
+	err := svr.Run()
 
 	if err != nil {
 		log.Println(err.Error())

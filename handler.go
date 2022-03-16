@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"user/handler"
 	"user/kitex_gen/user"
 )
 
@@ -10,6 +11,6 @@ type UserImpl struct{}
 
 // GetUser implements the UserImpl interface.
 func (s *UserImpl) GetUser(ctx context.Context, req *user.GetUserRequest) (resp *user.GetUserResponse, err error) {
-	// TODO: Your code here...
+	resp = handler.NewGetUserHandler(ctx).Handle(req)
 	return
 }
